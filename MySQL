@@ -1,0 +1,10 @@
+CREATE TABLE stocks
+(
+    Stock      VARCHAR(50),
+    Percentage VARCHAR(20),
+    Price      VARCHAR(20)
+);
+
+SELECT *
+FROM stocks;
+
