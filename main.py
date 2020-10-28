@@ -4,6 +4,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.keys import Keys
 import time
+import mysql.connector
 
 stock_name = []
 stock_percentage = []
@@ -63,3 +64,25 @@ while x < list_size:
     x +=1
 
 f.close()
+
+try:
+    connection = mysql.connector.connect(host='localhost',
+                                         database='databasename here',
+                                         user='username here',
+                                         password='password here')
+    mySql_insert_query = "INSERT INTO stocks (Stock, Percentage, Price) VALUES ((%s), (%s), (%s))"
+    cursor = connection.cursor()
+    for elem in zip(stock_name, stock_percentage, stock_price):
+        cursor.execute(mySql_insert_query, elem)
+        connection.commit()
+
+    print(cursor.rowcount, "Record inserted successfully into stock table")
+    cursor.close()
+
+except mysql.connector.Error as error:
+    print("Failed to insert record into stock table {}".format(error))
+
+finally:
+    if (connection.is_connected()):
+        connection.close()
+        print("MySQL connection is closed")
