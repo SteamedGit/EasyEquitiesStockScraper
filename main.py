@@ -64,7 +64,7 @@ while x < list_size:
     x +=1
 
 f.close()
-
+#writing to myql database
 try:
     connection = mysql.connector.connect(host='localhost',
                                          database='databasename here',
