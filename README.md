@@ -1,3 +1,5 @@
 # EasyEquitiesStockScraper
 
-Using Python and Selenium
+Python, Selenium and MySQL
+
+Packages: 
